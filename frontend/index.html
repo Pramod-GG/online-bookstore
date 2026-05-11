@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Online Bookstore</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <h1>Online Bookstore</h1>
+
+    <div class="top-bar">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search books..."
+            onkeyup="searchBooks()"
+        >
+
+        <a href="cart.html" class="cart-btn">
+            <button>Go To Cart</button>
+        </a>
+
+    </div>
+
+    <div id="books-container"></div>
+
+    <script src="script.js"></script>
+
+    <footer>
+    <p>© 2026 Online Bookstore | Built with Spring Boot & JavaScript</p>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Cart</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <h1>Your Cart</h1>
+
+    <div id="cart-container"></div>
+
+    <div class="checkout-section">
+
+        <h2 id="total-price"></h2>
+
+        <button onclick="checkout()">
+            Checkout
+        </button>
+
+        <br><br>
+
+<a href="index.html">
+    <button>
+        Continue Shopping
+    </button>
+</a>
+
+    </div>
+
+    <script>
+
+        const API = "http://localhost:8080";
+
+        async function loadCart() {
+
+            const response = await fetch(`${API}/cart`);
+
+            const books = await response.json();
+
+            const container = document.getElementById("cart-container");
+
+            const totalPrice = document.getElementById("total-price");
+
+            container.innerHTML = "";
+
+            let total = 0;
+
+            books.forEach(book => {
+
+                total += book.price;
+
+                let image = "";
+
+                if (book.id === 1) {
+                    image = "https://picsum.photos/400/250?random=1";
+                }
+
+                else if (book.id === 2) {
+                    image = "https://picsum.photos/400/250?random=2";
+                }
+
+                else if (book.id === 3) {
+                    image = "https://picsum.photos/400/250?random=3";
+                }
+
+                else if (book.id === 4) {
+                    image = "https://picsum.photos/400/250?random=4";
+                }
+
+                else if (book.id === 5) {
+                    image = "https://picsum.photos/400/250?random=5";
+                }
+
+                else {
+                    image = "https://picsum.photos/400/250?random=6";
+                }
+
+                container.innerHTML += `
+
+                    <div class="book-card">
+
+                        <img src="${image}" alt="Book">
+
+                        <div class="book-content">
+
+                            <h2>${book.title}</h2>
+
+                            <p class="price">₹${book.price}</p>
+
+                            <button onclick="removeBook(${book.id})">
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+            });
+
+            totalPrice.innerText = `Total: ₹${total}`;
+        }
+
+        async function removeBook(id) {
+
+            await fetch(`${API}/cart/${id}`, {
+                method: "DELETE"
+            });
+
+            loadCart();
+        }
+
+        async function checkout() {
+
+            await fetch(`${API}/checkout`, {
+                method: "POST"
+            });
+
+            alert("Order Placed Successfully!");
+
+            loadCart();
+        }
+
+        loadCart();
+
+    </script>
+
+</body>
+
+</html>
