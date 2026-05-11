@@ -138,7 +138,8 @@ http://localhost:5500
 
 ## Homepage
 
-<img width="1600" height="842" alt="image" src="https://github.com/user-attachments/assets/d5a9ba82-94a0-4a9a-a108-a5d7332f793c" />
+<img width="1600" height="842" alt="image" src="https://github.com/user-attachments/assets/8e419a02-2af1-4265-a25b-05d625819238" />
+
 
 
 ## Cart Page
